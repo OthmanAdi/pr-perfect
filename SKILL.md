@@ -1,11 +1,11 @@
 ---
-name: ship-to-boss
+name: pr-perfect
 description: >
   Create a GitHub PR with an engineered description that matches the team's established
   format — numbered problem-fix sections, technical tables, file-by-file breakdowns,
   commit lists, and verification checklists. Use this skill whenever the user asks to
   create a PR, ship code, prepare a merge request, write a PR description, or says
-  anything like "ship to boss", "make a PR", "prepare PR for merge", "create pull request",
+  anything like "ship to boss", "pr perfect", "make a PR", "prepare PR for merge", "create pull request",
   "engineer the PR", "PR description", or "ready to push". Also trigger when the user has
   finished a batch of work and says things like "let's wrap this up", "time to merge",
   "push this to main", or "get this ready for review". The skill handles everything:

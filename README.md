@@ -1,4 +1,4 @@
-# ship-to-boss
+# pr-perfect
 
 A Claude Code skill that writes PR descriptions so you don't have to pretend you enjoy it.
 
