@@ -1,6 +1,18 @@
-# pr-perfect
+<p align="center">
+  <img src="https://raw.githubusercontent.com/OthmanAdi/pr-perfect/main/media/logo.png" alt="pr-perfect" width="200">
+</p>
 
-A Claude Code skill that writes PR descriptions so you don't have to pretend you enjoy it.
+<h1 align="center">pr-perfect</h1>
+
+<p align="center">
+  A Claude Code skill that writes PR descriptions so you don't have to pretend you enjoy it.
+</p>
+
+<p align="center">
+  <code>npx skills add OthmanAdi/pr-perfect</code>
+</p>
+
+---
 
 ## Install
 
