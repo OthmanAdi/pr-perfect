@@ -140,11 +140,15 @@ git checkout -b feature/<descriptive-name> HEAD
 # Push to remote
 git push -u origin feature/<descriptive-name>
 
-# Create PR with the engineered description
-gh pr create --base main --title "<title>" --body "$(cat <<'PREOF'
+# Write body to temp file first — avoids all shell quoting issues
+# (single quotes, backticks, dollar signs in body content break heredoc-in-substitution)
+cat > /tmp/pr_body.md <<'PREOF'
 <body>
 PREOF
-)"
+
+# Create PR using body file — gh reads it directly, no shell parsing of content
+gh pr create --base main --title "<title>" --body-file /tmp/pr_body.md
+rm -f /tmp/pr_body.md
 ```
 
 Branch naming: `feature/<primary-theme>` using kebab-case. Keep it short but descriptive.
