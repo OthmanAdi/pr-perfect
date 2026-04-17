@@ -17,6 +17,16 @@ description: >
 Create PRs that serve as briefing documents — detailed enough for both humans and
 coding agents to review, verify, and merge with confidence.
 
+## Arguments
+
+The skill accepts free-form `ARGUMENTS` at invocation. Only one flag needs special handling:
+
+| Flag | Aliases | Effect |
+|---|---|---|
+| `--no-branch` | `--local-only`, `--no-pr`, `--draft-only` | **Skip branch creation, push, and `gh pr create` entirely.** Write the engineered description to `PR_DESCRIPTION.md` at the repo root and stop. Use this when the user commits directly to `main` and wants the description text only — e.g. to paste into a PR opened manually, attach to a changelog, or hand off to someone else to create the PR. |
+
+Detection: treat the flag as present if any of its aliases appears as a whole token in `ARGUMENTS` (case-insensitive). When present, **Step 4 is replaced** by the Local-only variant below — everything else (Steps 1–3) runs identically.
+
 ## Why This Format Matters
 
 The PR description is not just documentation. The reviewer (and their coding agent)
@@ -131,7 +141,9 @@ Bullet list of how to verify this works. Be specific:
 **N files changed, +X, −Y. Safe to squash merge.**
 ```
 
-### Step 4: Create Branch and PR
+### Step 4: Create Branch and PR (default)
+
+Use this variant unless the user passed `--no-branch` (see Arguments section).
 
 ```bash
 # Create feature branch from current HEAD
@@ -159,6 +171,32 @@ git checkout main
 ```
 
 Report the PR URL to the user.
+
+### Step 4 (Local-only variant): `--no-branch`
+
+Runs when `ARGUMENTS` contains `--no-branch`, `--local-only`, `--no-pr`, or `--draft-only`.
+**Do NOT create a branch. Do NOT push. Do NOT call `gh pr create`.** The user is
+working on `main` directly and only wants the engineered description on disk.
+
+```bash
+# Write the body to PR_DESCRIPTION.md at the repo root. Overwrites any prior
+# draft. The title goes on the first line as an H1 so the file stands on its
+# own if pasted into GitHub's web UI.
+cat > PR_DESCRIPTION.md <<'PREOF'
+# <title>
+
+<body>
+PREOF
+```
+
+Then tell the user exactly three things:
+1. The full path of `PR_DESCRIPTION.md`.
+2. That no branch was created, no push happened, and no PR was opened.
+3. How to turn it into a PR later if they want — typically:
+   `gh pr create --base main --head <their-branch> --title "<title>" --body-file PR_DESCRIPTION.md`
+
+Do NOT commit `PR_DESCRIPTION.md`. It is a scratch artifact for the user — add it to
+`.gitignore` only if the user asks. Leave `git status` dirty so they see it.
 
 ## Style Rules
 
