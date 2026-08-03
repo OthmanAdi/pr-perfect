@@ -1,0 +1,33 @@
+{
+  "name": "pr-perfect",
+  "version": "1.0.0",
+  "description": "Claude Code skill that engineers GitHub PR descriptions matching your team's exact format: numbered problem-fix sections, technical tables, file breakdowns, verification checklists.",
+  "keywords": [
+    "pi-package",
+    "pi-skill",
+    "pull-request",
+    "github",
+    "agent-skill",
+    "claude-code",
+    "skill"
+  ],
+  "pi": {
+    "skills": [
+      "skills/pr-perfect/SKILL.md"
+    ]
+  },
+  "files": [
+    "README.md",
+    "skills/pr-perfect/"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/OthmanAdi/pr-perfect.git"
+  },
+  "author": "Ahmad Othman Ammar Adi",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/OthmanAdi/pr-perfect/issues"
+  },
+  "homepage": "https://github.com/OthmanAdi/pr-perfect#readme"
+}

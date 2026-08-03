@@ -20,6 +20,8 @@
 npx skills add OthmanAdi/pr-perfect
 ```
 
+Or from npm: `pi install npm:pr-perfect` ([package](https://www.npmjs.com/package/pr-perfect))
+
 That's it. Now you have `/pr-perfect` in every project.
 
 ## The Problem
